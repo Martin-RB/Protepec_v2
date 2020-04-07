@@ -61,16 +61,22 @@ define(["require", "exports", "../../lib/ScreenMastah/PresenterCommon/BasePresen
             return _this;
         }
         PlatformView.prototype.OnDraw = function () {
+            var _this = this;
+            this.setEvents();
             this.initSidenav();
             this.initDropdown();
             this.initTapTarget();
-            this.setEvents();
-            this._tapTarget_I.open();
+            setTimeout(function () {
+                _this._tapTarget_I.tapTarget("open");
+            }, 500);
         };
         PlatformView.prototype.setEvents = function () {
             var _this = this;
             this.F["close-session"].click(function () {
                 var _a;
+                _this.destroySidenav();
+                _this.destroyTapTarget();
+                _this.destroyDropdown();
                 (_a = _this._logoutEvent) === null || _a === void 0 ? void 0 : _a.call(_this);
             });
             this.Container.find(".f_selectSection").click(function (e) {
@@ -99,12 +105,21 @@ define(["require", "exports", "../../lib/ScreenMastah/PresenterCommon/BasePresen
             this._sidenav_I = M.Sidenav.init(elems)[0];
         };
         PlatformView.prototype.initTapTarget = function () {
-            var elems = this.Container.find(".tap-target")[0];
-            this._tapTarget_I = M.TapTarget.init(elems);
+            var elems = this.F["tasks"];
+            this._tapTarget_I = elems.tapTarget();
         };
         PlatformView.prototype.initDropdown = function () {
             var elems = this.Container.find(".dropdown-trigger");
-            var instances = M.Dropdown.init(elems, { alignment: "right", constrainWidth: false });
+            this._topNav_Dropdown_I = M.Dropdown.init(elems, { alignment: "right", constrainWidth: false })[0];
+        };
+        PlatformView.prototype.destroySidenav = function () {
+            this._sidenav_I.destroy();
+        };
+        PlatformView.prototype.destroyTapTarget = function () {
+            this._tapTarget_I.tapTarget("destroy");
+        };
+        PlatformView.prototype.destroyDropdown = function () {
+            this._topNav_Dropdown_I.destroy();
         };
         return PlatformView;
     }(BaseView_1.BaseView));

@@ -100,10 +100,11 @@ body{
 	top: 56px;
 	height: calc(100% - 56px);
 	/* FFFF background-color: var(--color-ternary2); */
+	background-color: var(--color-secondary1);
 }
 /* FFFF */
 .my-sidenav li>a{
-	color: var(--color-ternary3);
+	color: #fff;
 }
 .user-background{
 	width: 500px;
@@ -161,12 +162,12 @@ body{
 	display: grid;
 	grid-template-columns: auto auto auto;
 	/* FFFF background-color: var(--color-secondary1) !important; */
-	background-color: var(--color-ternary4) !important;
+	background-color: var(--color-secondary2) !important;
 	padding: 8px 0 !important;
 }
 /* FFFF */
 .card-bottom > a{
-	color: var(--color-ternary5) !important;
+	color: var(--color-ternary4) !important;
 }
 
 .card-content-bgColor{

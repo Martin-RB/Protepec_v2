@@ -47,20 +47,26 @@ export class PlatformView extends BaseView{
     private _goToSectionEvent: ((section: string, data?: IHashMap<any>) => void) | undefined;
     private _logoutEvent: (() => void) | undefined;
     private _sidenav_I!: M.Sidenav;
-    private _tapTarget_I!: M.TapTarget;
+    private _tapTarget_I!: JQuery<HTMLElement>;
+    private _topNav_Dropdown_I!: M.Dropdown;
 
     OnDraw(){
+        this.setEvents();
         this.initSidenav();
         this.initDropdown();
         this.initTapTarget();
-        this.setEvents();
 
-        this._tapTarget_I.open();
+        setTimeout(() => {
+            this._tapTarget_I.tapTarget("open");
+        }, 500);
     }
 
     private setEvents() {
 
         this.F["close-session"].click(() => {
+            this.destroySidenav();
+            this.destroyTapTarget();
+            this.destroyDropdown();
             this._logoutEvent?.call(this);
         })
 
@@ -79,7 +85,7 @@ export class PlatformView extends BaseView{
     }
 
     SetLogoutEvent(event: () => void){
-        this._logoutEvent = event
+        this._logoutEvent = event;
     }
 
     GetInnerNavigationContainer(){
@@ -92,13 +98,25 @@ export class PlatformView extends BaseView{
     }
 
     private initTapTarget(){
-        var elems = this.Container.find(".tap-target")[0];
-        this._tapTarget_I = M.TapTarget.init(elems);
+        var elems = this.F["tasks"];
+        this._tapTarget_I = elems.tapTarget()
     }
 
     private initDropdown() {
         var elems = this.Container.find(".dropdown-trigger");
-        var instances = M.Dropdown.init(elems, {alignment: "right", constrainWidth: false});
+        this._topNav_Dropdown_I = M.Dropdown.init(elems, {alignment: "right", constrainWidth: false})[0];
+    }
+
+    private destroySidenav(){
+        this._sidenav_I.destroy();
+    }
+
+    private destroyTapTarget(){
+        this._tapTarget_I.tapTarget("destroy");
+    }
+
+    private destroyDropdown() {
+        this._topNav_Dropdown_I.destroy();
     }
 
 }
