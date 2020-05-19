@@ -1,0 +1,97 @@
+<h2>Trabajar cabezas</h2>
+
+<div class="row">
+    <div class="col s12">
+        <select class="browser-default" id="lorries-list">
+            <option value="-1" disabled selected>Seleccione jaula a trabajar</option>
+        </select>
+    </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="row">
+    <div class="col s12 l6">
+        <div class="row">
+            <div class="col s12 input-field">
+                <input id="siniga" type="text" class="validate">
+                <label for="lorryHeads">SINIGA</label>
+            </div>
+            <div class="col s12 input-field">
+                <input id="localID" type="text" class="validate">
+                <label for="lorryHeads">Id. local</label>
+            </div>
+            <div class="col s12">
+                <select class="browser-default" id="breed-list">
+                    <option value="-1" disabled selected>Raza</option>
+                    <option value="1">Option 1</option>
+                    <option value="2">Option 2</option>
+                    <option value="3">Option 3</option>
+                </select>
+            </div>
+            <div class="col s12">
+                <div class="row">
+                    <div class="col s12 m6 input-field">
+                        <label>
+                            <input class="with-gap" name="sexGrp" type="radio" value="female"/>
+                            <span>Hembra</span>
+                        </label>
+                    </div>
+                    <div class="col s12 m6 input-field">
+                        <label>
+                            <input class="with-gap" name="sexGrp" type="radio" value="male"/>
+                            <span>Macho</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12">
+                <div class="row">
+                    <div class="col s12 input-field">
+                        <input id="weight" type="text" class="validate">
+                        <label for="weight">Peso</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12">
+                <div class="row">
+                    <div class="col s12 input-field">
+                        <select id="alotList" class="browser-default">
+                            <option value="-1" disabled selected>Lote</option>
+                        </select>
+                        <a class="waves-effect waves-light btn" style="display: none;" id="newAlot">Nuevo lote</a>
+                    </div>
+                    <div class="col s12">
+                        <p>Capacidad: <span id="alotActualCap"></span> / <span id="alotMaxCap"></span></p>
+                        <p>Protocolo: <span id="alotProtocol"></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12">
+                <a class="waves-effect waves-light btn right" id="registerHead">Registrar cabeza</a>
+            </div>
+        </div>
+    </div>
+    <div class="col s10 offset-s1 l6">
+        <nav>
+            <div class="nav-wrapper">
+                <form>
+                    <div class="input-field">
+                        <input id="search" type="search" required placeholder="Buscar SINIGA">
+                        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                        <i class="material-icons">close</i>
+                    </div>
+                </form>
+            </div>
+        </nav>
+        <ul class="collapsible list" id="head-list">
+            
+        </ul>
+        <p>Cabezas de la jaula: <span id="lorryHeads"></span> / <span id="lorryMaxHeads"></span></p>
+    </div>
+</div>
+<div class="row">
+    <div class="col s12">
+        <a class="waves-effect waves-light btn right" id="workHeads">Terminar trabajo</a>
+    </div>
+</div>
